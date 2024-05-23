@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MyFirstAppActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,6 +26,7 @@ class MyFirstAppActivity : AppCompatActivity() {
             {
                 val intent = Intent(MyFirstAppActivity@this, LoginActivity::class.java)
                 startActivity(intent)
+                finish()
             },
             3000
         )

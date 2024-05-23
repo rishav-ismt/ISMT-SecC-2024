@@ -1,7 +1,9 @@
 package np.edu.ismt.rishavchudal.ismt_2024_secc
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,12 +24,41 @@ class LoginActivity : AppCompatActivity() {
 
         binding.tvLoginMessage.text = "LOGIN PAGE"
         binding.btnLogin.setOnClickListener {
-            val email = binding.tieEmail.text
-            Toast.makeText(
-                this@LoginActivity,
-                "Email Entered:".plus(email),
-                Toast.LENGTH_SHORT
-            ).show()
+            val email = binding.tieEmail.text.toString().trim()
+            val password = binding.tiePassword.text.toString().trim()
+
+            if (email.isNullOrEmpty()) {
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Please input an email",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Please input an valid email",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else if (password.isNullOrEmpty()) {
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Please input an password",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                //Local field validation success
+                //TODO remote server or local db authentication
+
+                val intent = Intent(
+                    this@LoginActivity,
+                    DashboardActivity::class.java
+                )
+                intent.putExtra("enteredEmail", email)
+                startActivity(intent)
+                finish()
+            }
+
+
         }
     }
 
