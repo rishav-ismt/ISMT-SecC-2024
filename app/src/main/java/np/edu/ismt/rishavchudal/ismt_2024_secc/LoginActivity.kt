@@ -1,5 +1,6 @@
 package np.edu.ismt.rishavchudal.ismt_2024_secc
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -46,14 +47,32 @@ class LoginActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
+                //Assuming Login is success
                 //Local field validation success
                 //TODO remote server or local db authentication
+
+
+                //Storing login session in SharedPreferences
+                val sharedPreferences = this@LoginActivity.application
+                    .getSharedPreferences(
+                        "login",
+                        Context.MODE_PRIVATE
+                    )
+                val sharedPrefEditor = sharedPreferences.edit()
+                sharedPrefEditor.putBoolean("isLoggedIn", true)
+                sharedPrefEditor.apply()
+
+                val testData = TestData(
+                    variable1 = "This is test data",
+                    variable2 = 29
+                )
 
                 val intent = Intent(
                     this@LoginActivity,
                     DashboardActivity::class.java
                 )
-                intent.putExtra("enteredEmail", email)
+                intent.putExtra(AppConstants.KEY_EMAIL, email)
+                intent.putExtra(AppConstants.KEY_TEST_DATA, testData)
                 startActivity(intent)
                 finish()
             }

@@ -1,5 +1,6 @@
 package np.edu.ismt.rishavchudal.ismt_2024_secc
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -24,9 +25,33 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed(
             {
-                val intent = Intent(MyFirstAppActivity@this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
+                //Checking loggedin state in sharedpreferences
+                val sharedPreferences = this@SplashActivity
+                    .application.getSharedPreferences(
+                        "login",
+                        Context.MODE_PRIVATE
+                    )
+
+                val isLoggedIn = sharedPreferences.getBoolean(
+                    "isLoggedIn",
+                    false
+                )
+
+                if (isLoggedIn) {
+                    val intent = Intent(
+                        this@SplashActivity,
+                        DashboardActivity::class.java
+                    )
+                    startActivity(intent)
+                    finish()
+                } else {
+                    val intent = Intent(
+                        this@SplashActivity,
+                        LoginActivity::class.java
+                    )
+                    startActivity(intent)
+                    finish()
+                }
             },
             3000
         )
