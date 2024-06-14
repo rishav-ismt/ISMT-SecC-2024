@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import np.edu.ismt.rishavchudal.ismt_2024_secc.R
+import np.edu.ismt.rishavchudal.ismt_2024_secc.dashboard.adapters.OffersHorizontalAdapter
 import np.edu.ismt.rishavchudal.ismt_2024_secc.databinding.FragmentHomeBinding
 
 
@@ -32,7 +36,31 @@ class HomeFragment : Fragment() {
             false
         )
         //Views initialization
+        setUpOffersRecyclerView()
         return binding.root
     }
 
-}
+    private fun setUpOffersRecyclerView() {
+        val adapter = OffersHorizontalAdapter(generateOffers())
+        binding.rvOffers.layoutManager = LinearLayoutManager(
+            requireActivity(),
+            RecyclerView.HORIZONTAL,
+            false
+        )
+        binding.rvOffers.adapter = adapter
+    }
+
+    private fun generateOffers(): List<Product> {
+        val products = mutableListOf<Product>()
+        for(i in 1..20) {
+            val product = Product(
+                name = "Product ".plus(i),
+                price = (100 * i).toString(),
+                description = "Description ".plus(i)
+            )
+            products.add(product)
+        }
+        return products
+    }
+
+}  
