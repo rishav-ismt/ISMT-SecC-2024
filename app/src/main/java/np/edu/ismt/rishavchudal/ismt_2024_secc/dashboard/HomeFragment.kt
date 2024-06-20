@@ -1,5 +1,6 @@
 package np.edu.ismt.rishavchudal.ismt_2024_secc.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
         )
         //Views initialization
         setUpOffersRecyclerView()
+        setUpFabButton()
         return binding.root
     }
 
@@ -61,6 +63,16 @@ class HomeFragment : Fragment() {
             products.add(product)
         }
         return products
+    }
+
+    private fun setUpFabButton() {
+        binding.fabAddItem.setOnClickListener {
+            val intent = Intent(
+                requireActivity(),
+                AddOrUpdateActivity::class.java
+            )
+            startActivity(intent)
+        }
     }
 
 }  
