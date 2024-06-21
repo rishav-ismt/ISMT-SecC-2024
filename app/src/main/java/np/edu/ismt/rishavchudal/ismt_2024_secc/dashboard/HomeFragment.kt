@@ -6,11 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import np.edu.ismt.rishavchudal.ismt_2024_secc.R
 import np.edu.ismt.rishavchudal.ismt_2024_secc.dashboard.adapters.OffersHorizontalAdapter
+import np.edu.ismt.rishavchudal.ismt_2024_secc.dashboard.db.Product
 import np.edu.ismt.rishavchudal.ismt_2024_secc.databinding.FragmentHomeBinding
 
 

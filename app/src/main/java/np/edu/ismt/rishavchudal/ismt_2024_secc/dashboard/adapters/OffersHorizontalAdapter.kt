@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import np.edu.ismt.rishavchudal.ismt_2024_secc.dashboard.Product
+import np.edu.ismt.rishavchudal.ismt_2024_secc.dashboard.db.Product
 import np.edu.ismt.rishavchudal.ismt_2024_secc.databinding.LayoutItemOffersBinding
 
 class OffersHorizontalAdapter(

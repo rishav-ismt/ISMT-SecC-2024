@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import np.edu.ismt.rishavchudal.ismt_2024_secc.R
+import np.edu.ismt.rishavchudal.ismt_2024_secc.dashboard.db.SampleDatabase
 import np.edu.ismt.rishavchudal.ismt_2024_secc.databinding.ActivityAddOrUpdateBinding
 
 class AddOrUpdateActivity : AppCompatActivity() {
@@ -15,5 +16,15 @@ class AddOrUpdateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddOrUpdateBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.mbAddOrUpdate.setOnClickListener {
+            val db = SampleDatabase.getInstance(this.applicationContext)
+            val dao = db.getProductDao()
+
+            Thread {
+                dao.deleteProducts()
+            }.start()
+
+        }
     }
 }
